@@ -1,12 +1,14 @@
 const jwt = require("jsonwebtoken");
 const User = require("../schemas/user");
+
 module.exports = async (req, res, next) => {
-    const { authorization } = req.cookies;
+    const { Authorization } = req.cookies;
     //req.cookies는 쿠키정보를 객체형태로 가져온다.
+    ////[[authorization오류]]]auth.js에서 Authorization이라는 이름(대문자A)으로 cookie할당했으니까
 
     //만약 authorization이 존재하지않으면(쿠키가 존재하지 않았을때는 undefined)
     //그렇게 되면 오류발생되니 없을대는 무조건 빈 문자열로 되게끔 만들어줌
-    const [authType, authToken] = (authorization ?? "").split(" ");
+    const [authType, authToken] = (Authorization ?? "").split(" ");
     //TOKEN이 bearer형태인데 그 형태가
     // => Bearer 앞앞앞.중간중간.뒤뒤뒤 이런형식이니까 split으로 나눠서생각한다. 
     //=> Bearer(타입)과 뒷값(앞앞.중간중간.뒤뒤)을 따로 볼수있게 세팅

@@ -4,7 +4,7 @@ const User = require("../schemas/user")
 const jwt = require("jsonwebtoken")//jsonwebtoken 라이브러리 사용하려고
 
 
-//로그인 API
+//(2)로그인 API( (1)은 회원가입(users))
 router.post('/auth',async(req,res)=>{
     const {email, password} = req.body;
 //이메일이 일치하는 유저를 찾기
